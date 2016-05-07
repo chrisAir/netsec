@@ -1,0 +1,8 @@
+Task 2.1
+The glibc library provides functions which all GNU/Linux programs are using, so every program is linked with that library. 
+With specially crafted DNS responses an attacker could force a stack-based buffer overflow. Therefore a 2048 byte fixed size buffer for the DNS communication is located on the stack. But the attacker was able to write at most 65535 bytes to this buffer and to overflow the stack. Then he could place an exploit on the overflowed stack and execute it.
+NX – Non executable stack
+The main idea is to separate the executable memory from the writable memory. Therefore it is forbidden to execute code which is on the stack. Non executable stack.
+ASLR – Address Space Layout Randomization
+The addresses of the stack and the libraries are randomized. So the attacker cannot execute his own code on the stack, because he does not know where it lays. Even other libraries can’t be used for exploiting, because their addresses are not accessible.
+
