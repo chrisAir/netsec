@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 
-echo "install python-aprmd5 in home directory"
-
+echo "INSTALL python-aprmd5 IN HOME DIRECTORY"
 cd python-aprmd5
 ./setup.py build
 ./setup.py install --home=~
+echo "-----SETUP FINISHED-----"
 
-echo "setting PYTHONPATH"
-echo "export PYTHONPATH='${PYTHONPATH}:/usr/local/lib/python2.7/site-packages'" >> ~/.bashrc
+echo "SETTING PYTHONPATH"
+echo "export PYTHONPATH='${PYTHONPATH}:~/lib/python'" >> ~/.bashrc
+echo "export PYTHONPATH=$PYTHONPATH:~/lib/python" >> ~/.bash_profile
 
-echo "reloading bashrc"
+echo "RELOADING bashrc/bash_profile"
 source ~/.bashrc
+source ~/.bash_profile
 
-echo "running password decoding"
-cd ..
+echo "RUNNING DECODEING"
+cd ..~
+chmod +x ueblerhack.py
 ./ueblerhack.py
+echo "FINISHED"
 
 
