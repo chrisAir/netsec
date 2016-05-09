@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from aprmd5 import password_validate
 
 path = 'rfc3093.txt'
