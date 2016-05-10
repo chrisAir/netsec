@@ -15,3 +15,11 @@ a "weak" password is short and does use only a single or few charactersets.
 
 Part b) Brute-Force Attacks:
 
+The number of possible passwords is P^n so that increasing the length of the password n causes the number of possible passwords
+to grow faster.
+
+A password with length 5 and P = U + L has about 254 million possible combinations.
+Adding D to P makes it about 656 million possibilities.
+
+Having P = U + L again and increase n by one (|P| = 48 and n = 6) increases the amount of possible passwords to
+12 billion.
