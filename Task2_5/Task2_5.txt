@@ -1,0 +1,10 @@
+the pcap file contains a record of network packets during a network communication.
+
+The target seems to be a website or web application where it is mandatory to login.
+
+The attacker is using a sql injection trying to get user information.
+
+No, the attack did not ultimately compromis the target system. Therefore the leaked information must be used to get access to the System.
+Furthermore the attacker was not successfull i think. Usernames were leaked but the passwords not.
+
+Securing the system from user input is mandatory to be safe from sql injections.
