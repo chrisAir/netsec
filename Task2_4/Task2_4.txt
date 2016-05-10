@@ -1,0 +1,17 @@
+Part a) Dictionary Attacks:
+
+1. The RockYou word list is a dictionary for possible passwords. It consists of passwords that were stolen or leaked.
+Therefore they seem to be legit to use for cracking passwords.
+
+2. The most passwords are made up only from standart characters and are quite short. Some of them (the most) are chosen sloppy
+and are normal words or a combination of two words. In many cases using a regular library as a word list would be enough.
+
+3. a "strong" password is a long password consisting of different charakters out of different charactersets without formin
+a regular word.
+
+a "weak" password is short and does use only a single or few charactersets.
+
+4. No its not.
+
+Part b) Brute-Force Attacks:
+
