@@ -1,0 +1,10 @@
+4-bit prefix:
+	 - collisions occured at [1, 5, 1, 1, 3] repetitions with an average of 2
+8-bit prefix:
+	 - collisions occured at [47, 141, 107, 179, 19] repetitions with an average of 98
+12-bit prefix:
+	 - collisions occured at [214, 1434, 2742, 2232, 232] repetitions with an average of 1370
+16-bit prefix:
+	 - collisions occured at [29022, 99048, 1380, 77925, 38038] repetitions with an average of 49082
+20-bit prefix:
+	 - collisions occured at [148787, 40867, 220285, 533179, 2000255] repetitions with an average of 588674
