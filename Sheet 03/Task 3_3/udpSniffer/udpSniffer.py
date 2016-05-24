@@ -15,6 +15,7 @@ def main():
     pcap = Pcap('udpTraffic.pcap')  #creating pcap file to write traffic to
     conn = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(3)) #creating a raw socket listening to every kind of traffic (ntohs(3))
 
+    # records traffic til a manual interrupt by the user
     while True:
         raw_data, addr = conn.recvfrom(65535)
         ethPack = Ethernet(raw_data)
