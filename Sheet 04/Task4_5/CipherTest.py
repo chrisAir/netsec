@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
             # Setup the servers to scan and ensure they are reachable
             hostname = word
-            print'\nconnecting to {}'.format(hostname)
+            #connecting to host
             try:
                 server_info = ServerConnectivityInfo(hostname=hostname)
                 server_info.test_connectivity_to_server()
@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
             from sslyze.plugins.openssl_cipher_suites_plugin import OpenSslCipherSuitesPlugin
 
-            print '\nchecking ciphers for {}'.format(hostname)
+            #checking ciphers for current hostname
             plugin = OpenSslCipherSuitesPlugin()
             plugin_result = plugin.process_task(server_info, 'tlsv1')
             # adding ciphers which were accepted by the host
@@ -41,7 +41,6 @@ if __name__ == '__main__':
                     cipherCount[cipher.name] = cipherCount.get(cipher.name) + 1
                 else:
                     cipherCount[cipher.name] = 1
-                print '    {} was added to cipherCount'.format(cipher.name)
 
     print '\nAll ciphers accepted by the hosts from top100.txt:\n'
     pp = pprint.PrettyPrinter(indent=2)
