@@ -18,6 +18,7 @@ if __name__ == '__main__':
 
             # Setup the servers to scan and ensure they are reachable
             hostname = word
+            print'\nconnecting to {}'.format(hostname)
             try:
                 server_info = ServerConnectivityInfo(hostname=hostname)
                 server_info.test_connectivity_to_server()
