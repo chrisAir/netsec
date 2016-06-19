@@ -1,5 +1,5 @@
 #!/usr/bin bash
 
-OTP = "head -c 20 /dev/urandom"
+otp="$(head -c 20 /dev/urandom)"
 
-echo ${OTP}
+echo ${otp}
