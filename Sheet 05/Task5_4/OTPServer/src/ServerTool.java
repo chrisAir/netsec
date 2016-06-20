@@ -6,34 +6,28 @@ import java.io.UnsupportedEncodingException;
 public class ServerTool {
 
     //TODO: implement decoding
-    public String decodeMessage(String encodedMessage) {
-        return encodedMessage;
+    public String decodeMessage(byte[] encodedMessage, byte[] otp) throws UnsupportedEncodingException {
+
+        byte[] decodedMessage = new byte[encodedMessage.length];
+
+        for (int i = 0; i < otp.length; i++) {
+            decodedMessage[i] = (byte) (encodedMessage[i] ^ otp[i]);
+        }
+        return new String(decodedMessage, "UTF-8");
     }
 
-    //TODO: implement encoding
-    public String encodeMessage(String message, byte[] otp) throws UnsupportedEncodingException {
+    public byte[] encodeMessage(String message, byte[] otp) throws UnsupportedEncodingException {
 
         byte[] messageBytes = message.getBytes("UTF-8");
 
         if (messageBytes.length != otp.length) {
-            return "Bad OTP Length";
+            return null;
         }
 
-        byte[] encodedMessage = new byte[messageBytes.length];
+        byte [] encodedMessage = new byte[messageBytes.length];
         for (int i = 0; i < otp.length; i++) {
             encodedMessage[i] = (byte) (messageBytes[i] ^ otp[i]);
         }
-        String encodedString = new String(encodedMessage, "UTF-8");
-        return encodedString;
-
-
-
-
-
-//        System.out.println("Message length: " + message.length());
-//        byte[] messageBytes = message.getBytes("UTF-8");
-//        System.out.println("bytes length: " + messageBytes.length);
-//        String translatedMessage = new String(messageBytes, "UTF-8");
-//        return translatedMessage;
+        return encodedMessage;
     }
 }

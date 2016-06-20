@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -16,23 +13,35 @@ public class OTPClient {
 
     public static void main(String[] args) {
         String otp = args[0];
-        System.out.println("I am the OTP Client!");
+        System.out.println(args[0]);
         String serverMessage;
-        String clientResponse = "I am the Client";
+        String clientResponse = "heres clients answer";
         OTPTool otpTool = new OTPTool();
 
         try {
 
             clientSocket = new Socket(HOST, PORT);
-            BufferedReader serverInput = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            //initializing streams
+            InputStream serverInput = clientSocket.getInputStream();
             DataOutputStream outputStream = new DataOutputStream(clientSocket.getOutputStream());
+
+
             System.out.println("Connection to Host established");
-            serverMessage = serverInput.readLine();
-            System.out.println("Encoded Message from Server: " + serverMessage);
-            String decodedMessage = otpTool.decodeMessage(serverMessage, otp.getBytes());
+
+            //reading message from Server
+            byte[] data = new byte[otp.getBytes("UTF-8").length];
+            int count = serverInput.read(data);
+            System.out.println("Encoded Message from Server: " + new String(data, "UTF-8"));
+            //decoding
+            String decodedMessage = otpTool.decodeMessage(data, otp.getBytes("UTF-8"));
             System.out.println("Decoded message from Server: " + decodedMessage);
+
+            //sending answer to Server
             System.out.println("Answering with own message: " + clientResponse);
-            outputStream.writeBytes(clientResponse);
+            byte[] clientResponseByte = otpTool.encodeMessage(clientResponse, otp.getBytes());
+
+            outputStream.write(clientResponseByte);
+            //outputStream.writeBytes(clientResponse);
             outputStream.flush();
             outputStream.close();
         } catch (IOException e) {

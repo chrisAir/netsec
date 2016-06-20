@@ -5,19 +5,27 @@ import java.io.UnsupportedEncodingException;
  */
 public class OTPTool {
 
-    //TODO: implement decoding
-    public String decodeMessage(String encodedMessage, byte[] otp) throws UnsupportedEncodingException {
+    public String decodeMessage(byte[] message, byte[] otp) throws UnsupportedEncodingException {
 
-        byte[] encodedBytes = encodedMessage.getBytes("UTF-8");
-        byte[] decodedMessage = new byte[encodedBytes.length];
+        byte[] decodedMessage = new byte[message.length];
 
         for (int i = 0; i < otp.length; i++) {
-            decodedMessage[i] = (byte) (encodedBytes[i] ^ otp[i]);
+            decodedMessage[i] = (byte) (message[i] ^ otp[i]);
         }
         return new String(decodedMessage, "UTF-8");
     }
 
-    public String encodeMessage(String message) {
-        return message;
+    public byte[] encodeMessage(String message, byte[] otp) throws UnsupportedEncodingException {
+        byte[] messageBytes = message.getBytes("UTF-8");
+
+        if (messageBytes.length != otp.length) {
+            return null;
+        }
+
+        byte [] encodedMessage = new byte[messageBytes.length];
+        for (int i = 0; i < otp.length; i++) {
+            encodedMessage[i] = (byte) (messageBytes[i] ^ otp[i]);
+        }
+        return encodedMessage;
     }
 }
