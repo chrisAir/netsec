@@ -3,7 +3,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by ronaldbrenner on 19.06.16.
  */
-public class OTPTool {
+public class ClientTool {
 
     public String decodeMessage(byte[] message, byte[] otp) throws UnsupportedEncodingException {
 

@@ -16,7 +16,7 @@ public class OTPClient {
         System.out.println(args[0]);
         String serverMessage;
         String clientResponse = "heres clients answer";
-        OTPTool otpTool = new OTPTool();
+        ClientTool clientTool = new ClientTool();
 
         try {
 
@@ -33,15 +33,15 @@ public class OTPClient {
             int count = serverInput.read(data);
             System.out.println("Encoded Message from Server: " + new String(data, "UTF-8"));
             //decoding
-            String decodedMessage = otpTool.decodeMessage(data, otp.getBytes("UTF-8"));
+            String decodedMessage = clientTool.decodeMessage(data, otp.getBytes("UTF-8"));
             System.out.println("Decoded message from Server: " + decodedMessage);
 
             //sending answer to Server
             System.out.println("Answering with own message: " + clientResponse);
-            byte[] clientResponseByte = otpTool.encodeMessage(clientResponse, otp.getBytes());
+            byte[] clientResponseByte = clientTool.encodeMessage(clientResponse, otp.getBytes());
 
+            //
             outputStream.write(clientResponseByte);
-            //outputStream.writeBytes(clientResponse);
             outputStream.flush();
             outputStream.close();
         } catch (IOException e) {
