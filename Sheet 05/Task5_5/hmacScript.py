@@ -3,6 +3,7 @@ import hashlib
 
 import sys
 
+# key got from name2key on hellgate
 key = b'6c82ad5b9a'
 oPadBase = b'A5'
 iPadBase = b'93'
@@ -12,8 +13,6 @@ iPadBase = b'93'
 
 
 def main():
-    print ("args: " + str(sys.argv))
-    print len(sys.argv)
     if len(sys.argv) < 2:
         print "Please pass filepath as parameter"
         return
@@ -22,8 +21,6 @@ def main():
     # both pads are generated with the given key and the base values from the sheet
     iPad = buildPadWithKey(iPadBase, key)
     oPad = buildPadWithKey(oPadBase, key)
-    print iPad
-    print oPad
     sys.stdout.flush()
 
     # creating hash generator to be filled as soon as digest is available
@@ -40,7 +37,7 @@ def main():
     outerHash.update(innerHash.digest())
     finalHash = outerHash.hexdigest()
 
-    print "the files hash: " + finalHash
+    print "the files hmac: \n" + finalHash
 
 
 def padkey(baseKey, blocksize=64):
