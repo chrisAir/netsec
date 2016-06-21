@@ -2,17 +2,19 @@ import hashlib
 import binascii
 
 path = 'rfc7511.txt'
-authenticator = '45b6c0810adffb1df0af6a0e41533c4c'
-string2 = 'd4f042b15aadb9d229c2251d14d32365'
+
+messageauthenticator = '45b6c0810adffb1df0af6a0e41533c4c'
+
+userpasswordattribute = 'b89aac246a9694c177081c099dfc1f0e'
+
 nonce = 'c05e767c28001ef3800526a8306a55445262e4b6f45df41b18061cbe'
-key = ''
+
+pw = 'ahkaicoudahzohqu'
 
 
 noncetogo = binascii.unhexlify(nonce)
 
-#bla = binascii.unhexlify(string) + binascii.unhexlify(nonce)
-#test = hashlib.md5()
-#test.update(bla)
+print nonce.decode("hex")
 
 
 
@@ -20,15 +22,12 @@ check = False
 file = open(path, 'r')
 for line in file:
     for word in line.split():
-
-        conc = noncetogo + word
+        conc = word + nonce
         m = hashlib.md5()
         m.update(conc)
 
-        c = m.hexdigest ^ pw
+        c = m.hexdigest() ^ binascii.hexlify(pw)
 
-        print c
-
-        if(string2 == m.hexdigest):
+        if(userpasswordattribute == c):
             check = True
 print check
